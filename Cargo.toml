@@ -1,0 +1,21 @@
+[package]
+name = "telemetry-rs"
+version = "1.0.0"
+edition = "2021"
+authors = ["Patrick Isles <https://github.com/patrick-isles>"]
+description = "High-performance zero-allocation hardware telemetry engine, real-time DSP core, terminal oscilloscope, and Prometheus exporter in pure Rust."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/patrick-isles/telemetry-rs"
+keywords = ["telemetry", "embedded", "dsp", "prometheus", "oscilloscope"]
+categories = ["embedded", "command-line-utilities", "science"]
+
+[dependencies]
+libc = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

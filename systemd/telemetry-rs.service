@@ -1,0 +1,23 @@
+[Unit]
+Description=Telemetry-RS - High-Performance Hardware Telemetry Engine & Prometheus Exporter
+Documentation=https://github.com/patrick-isles/telemetry-rs
+After=network.target
+
+[Service]
+Type=simple
+User=pat
+WorkingDirectory=/home/pat/projects/telemetry-rs
+ExecStart=/home/pat/.local/bin/telemetry-rs --headless --device /tmp/ehb-virtual-uart --port 9106
+Restart=always
+RestartSec=3s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=telemetry-rs
+
+# Hardening / Sandboxing
+ProtectSystem=full
+ProtectHome=read-only
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
